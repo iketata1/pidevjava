@@ -1,0 +1,211 @@
+.title{
+    -fx-font-size: 2em;
+    -fx-text-fill:  #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.form_container{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-spacing: 10px; /* Espacement entre les enfants de la VBox */
+-fx-padding: 10px; /* Espacement interne de la VBox */
+
+
+}
+
+.form_container Text{
+   -fx-font-size: 1.2em;
+    -fx-fill:  #FFFFFF;
+}
+
+.form_container VBox{
+
+    -fx-border-width: 0 0 0 1;
+    -fx-border-color: #4682B4;
+    -fx-padding: 10;
+    -fx-spacing: 15;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-background-color:#4682B4;
+
+
+}
+
+.form_container TextField {
+
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill:  #FFFFFF;
+    -fx-font-size: 1.3em;
+    -fx-font-family: "Calibri Light";
+}
+
+
+.form_container Button{
+
+    color: black;
+    -fx-effect: dropshadow(three-pass-box , #AAAAAA , 3 , 0 , 0 , 3);
+    -fx-pref-width: 100;
+    -fx-font-size: 1.5em;
+    -fx-font-family: "Calibri Light";
+    -fx-text-fill: #FFFFFF;
+}
+
+.form_container Button:hover{
+    -fx-cursor: hand;
+}
+
+.root{
+    -fx-background-color:#EAEEF4;
+}
+
+.side_ankerpane{
+    -fx-background-color:#353A56;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+.inner_pane{
+    -fx-background-color:#748CF1;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+
+}
+.most_inner_pane{
+    -fx-background-color:#6780E2;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+}
+
+#btn_workbench{
+    -fx-background-color:#141313;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+.btn_workbench11{
+    -fx-background-color:#141313;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+.pane_1{
+    -fx-background-color:#748CF1;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+}
+.progress{
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+}
+.pane_11{
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+}
+.pane_111{
+    -fx-background-color:#FD9999;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #FD9999;
+
+}
+.pane_1111{
+    -fx-background-color:#353A56;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #353A56;
+}
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 1.5em;
+    -fx-font-family: "Calibri Light";
+    -fx-effect: dropshadow(three-pass-box , #AAAAAA , 3 , 0 , 0 , 3);
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-border-radius: 8px;
+    -fx-cursor: hand;
+    -fx-background-radius: 20px;
+    -fx-border-width: 0px;
+}
+
+.button:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.button:pressed {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.button .label {
+    -fx-text-fill: white;
+}
+
+#btn_supp {
+    -fx-background-color: linear-gradient(to right, #FF4E50, #FFA17F); /* Dégradé rouge à jaune */
+}
+
+#btn_reprec {
+    -fx-background-color: linear-gradient(to right, #1e90ff, #56ccf2); /* Dégradé bleu à turquoise */
+}
+
+#btn_mod {
+    -fx-background-color: linear-gradient(to right, #FFA17F, #F9D423); /* Dégradé jaune à bleu foncé */
+}
+
+#btn_ajout {
+    -fx-background-color: linear-gradient(to right, #00C9FF, #92FE9D); /* Dégradé bleu clair à vert */
+}
+
+#btn_ann {
+    -fx-background-color: linear-gradient(to right, #FF00FF, #FFA17F); /* Dégradé magenta à orange */
+}
+
+
+#coldate
+ {
+    -fx-alignment: CENTER; /* Centrer le contenu de la colonne */
+    -fx-font-weight: bold; /* Mettre en gras le texte */
+    -fx-text-fill: #FFFFFF; /* Couleur du texte en blanc */
+    -fx-background-color: #2E8B57; /* Couleur de fond vert pour ces colonnes */
+}
+#coltype,
+#coletat,
+#coldesc,
+#colid,
+#coliduser,
+#colemail {
+    -fx-alignment: CENTER; /* Centrer le contenu de la colonne */
+    -fx-font-weight: bold; /* Mettre en gras le texte */
+    -fx-text-fill: #FFFFFF; /* Couleur du texte en blanc */
+    -fx-background-color: #4682B4; /* Couleur de fond bleu pour ces colonnes */
+}

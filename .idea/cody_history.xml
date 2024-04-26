@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChatHistory">
+    <chats>
+      <list>
+        <chat>
+          <internalId value="10f86c75-96b6-45f7-b62c-05732140739d" />
+          <llm>
+            <llm>
+              <model value="anthropic/claude-3-sonnet-20240229" />
+              <provider value="Anthropic" />
+              <title value="Claude 3 Sonnet" />
+            </llm>
+          </llm>
+        </chat>
+        <chat>
+          <accountId value="VXNlcjozOTcyNjY=" />
+          <internalId value="3e4c606e-22e3-4e76-b63d-290d02e3638e" />
+          <llm>
+            <llm>
+              <model value="anthropic/claude-3-sonnet-20240229" />
+              <provider value="Anthropic" />
+              <title value="Claude 3 Sonnet" />
+            </llm>
+          </llm>
+        </chat>
+        <chat>
+          <accountId value="VXNlcjozOTcyNjY=" />
+          <internalId value="bdef6798-513e-46ac-8743-bc203ff289db" />
+          <llm>
+            <llm>
+              <model value="anthropic/claude-3-sonnet-20240229" />
+              <provider value="Anthropic" />
+              <title value="Claude 3 Sonnet" />
+            </llm>
+          </llm>
+          <messages>
+            <list>
+              <message>
+                <speaker value="HUMAN" />
+                <text value="kk" />
+              </message>
+              <message>
+                <speaker value="ASSISTANT" />
+                <text value="&lt;html&gt;&lt;b&gt;You've used up your chat and commands for the month:&lt;/b&gt; You've used all chat messages and commands for the month. Upgrade to Cody Pro for unlimited autocompletes, chats, and commands. &lt;a href=&quot;https://sourcegraph.com/cody/subscription&quot;&gt;Upgrade&lt;/a&gt; or &lt;a href=&quot;https://sourcegraph.com/cody/subscription&quot;&gt;learn more&lt;/a&gt;.&lt;br&gt;&lt;br&gt;(Already upgraded to Pro? Restart your IDE for changes to take effect)&lt;/html&gt;" />
+              </message>
+            </list>
+          </messages>
+          <updatedAt value="2024-04-22T20:23:11.761124" />
+        </chat>
+        <chat>
+          <accountId value="VXNlcjozOTcyNjY=" />
+          <internalId value="498c2db5-6941-4fe8-8d76-1e92a2352fe5" />
+          <llm>
+            <llm>
+              <model value="anthropic/claude-3-sonnet-20240229" />
+              <provider value="Anthropic" />
+              <title value="Claude 3 Sonnet" />
+            </llm>
+          </llm>
+          <messages>
+            <list>
+              <message>
+                <speaker value="HUMAN" />
+                <text value="aider moi " />
+              </message>
+              <message>
+                <speaker value="ASSISTANT" />
+              </message>
+              <message>
+                <speaker value="HUMAN" />
+                <text value="aider moi " />
+              </message>
+              <message>
+                <speaker value="ASSISTANT" />
+                <text value="&lt;html&gt;&lt;b&gt;You've used up your chat and commands for the month:&lt;/b&gt; You've used all chat messages and commands for the month. Upgrade to Cody Pro for unlimited autocompletes, chats, and commands. &lt;a href=&quot;https://sourcegraph.com/cody/subscription&quot;&gt;Upgrade&lt;/a&gt; or &lt;a href=&quot;https://sourcegraph.com/cody/subscription&quot;&gt;learn more&lt;/a&gt;.&lt;br&gt;&lt;br&gt;(Already upgraded to Pro? Restart your IDE for changes to take effect)&lt;/html&gt;" />
+              </message>
+            </list>
+          </messages>
+          <updatedAt value="2024-04-22T20:24:33.892175" />
+        </chat>
+        <chat>
+          <accountId value="VXNlcjozOTcyNjY=" />
+          <internalId value="92e245cb-36b9-4e3a-af1e-01aedd4f9622" />
+          <llm>
+            <llm>
+              <model value="anthropic/claude-3-sonnet-20240229" />
+              <provider value="Anthropic" />
+              <title value="Claude 3 Sonnet" />
+            </llm>
+          </llm>
+          <messages>
+            <list>
+              <message>
+                <speaker value="HUMAN" />
+                <text value="&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&#10;&#10;&amp;lt;?import java.lang.String?&amp;gt;&#10;&amp;lt;?import javafx.collections.FXCollections?&amp;gt;&#10;&amp;lt;?import javafx.geometry.Insets?&amp;gt;&#10;&amp;lt;?import javafx.scene.control.Button?&amp;gt;&#10;&amp;lt;?import javafx.scene.control.ChoiceBox?&amp;gt;&#10;&amp;lt;?import javafx.scene.control.Label?&amp;gt;&#10;&amp;lt;?import javafx.scene.control.TextArea?&amp;gt;&#10;&amp;lt;?import javafx.scene.control.TextField?&amp;gt;&#10;&amp;lt;?import javafx.scene.layout.VBox?&amp;gt;&#10;&amp;lt;?import javafx.scene.text.Font?&amp;gt;&#10;&#10;&amp;lt;VBox alignment=&amp;quot;CENTER&amp;quot; prefHeight=&amp;quot;616.0&amp;quot; prefWidth=&amp;quot;381.0&amp;quot; spacing=&amp;quot;20.0&amp;quot; style=&amp;quot;-fx-background-color: #0053a1;&amp;quot; xmlns=&amp;quot;http://javafx.com/javafx/21&amp;quot; xmlns:fx=&amp;quot;http://javafx.com/fxml/1&amp;quot; fx:controller=&amp;quot;tn.esprit.financialhub.controllers.UpdateReclamationController&amp;quot;&amp;gt;&#10;    &amp;lt;padding&amp;gt;&#10;        &amp;lt;Insets bottom=&amp;quot;20.0&amp;quot; left=&amp;quot;20.0&amp;quot; right=&amp;quot;20.0&amp;quot; top=&amp;quot;20.0&amp;quot; /&amp;gt;&#10;    &amp;lt;/padding&amp;gt;&#10;    &amp;lt;children&amp;gt;&#10;        &amp;lt;Label text=&amp;quot;Update Reclamation&amp;quot; textFill=&amp;quot;#ffffff&amp;quot;&amp;gt;&#10;            &amp;lt;font&amp;gt;&#10;                &amp;lt;Font name=&amp;quot;System Bold&amp;quot; size=&amp;quot;24.0&amp;quot; /&amp;gt;&#10;            &amp;lt;/font&amp;gt;&#10;        &amp;lt;/Label&amp;gt;&#10;        &amp;lt;Label text=&amp;quot;Username :&amp;quot; textFill=&amp;quot;#ffffff&amp;quot; /&amp;gt;&#10;        &amp;lt;TextField fx:id=&amp;quot;usernameF&amp;quot; prefHeight=&amp;quot;38.0&amp;quot; prefWidth=&amp;quot;584.0&amp;quot; promptText=&amp;quot;Nom d'utilisateur&amp;quot; style=&amp;quot;-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5px; -fx-padding: 8px; -fx-font-size: 14px;&amp;quot; /&amp;gt;&#10;        &amp;lt;Label text=&amp;quot;Email :&amp;quot; textFill=&amp;quot;#ffffff&amp;quot; /&amp;gt;&#10;        &amp;lt;TextField fx:id=&amp;quot;emailF&amp;quot; promptText=&amp;quot;Email&amp;quot; style=&amp;quot;-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5px; -fx-padding: 8px; -fx-font-size: 14px;&amp;quot; /&amp;gt;&#10;        &amp;lt;Label text=&amp;quot;Description :&amp;quot; textFill=&amp;quot;#ffffff&amp;quot; /&amp;gt;&#10;        &amp;lt;TextArea fx:id=&amp;quot;descriptionA&amp;quot; prefHeight=&amp;quot;100.0&amp;quot; prefWidth=&amp;quot;200.0&amp;quot; promptText=&amp;quot;Description&amp;quot; style=&amp;quot;-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5px; -fx-padding: 8px; -fx-font-size: 14px;&amp;quot; /&amp;gt;&#10;        &amp;lt;Label text=&amp;quot;Type :&amp;quot; textFill=&amp;quot;#ffffff&amp;quot; /&amp;gt;&#10;        &amp;lt;ChoiceBox fx:id=&amp;quot;typeChoiceBoxF&amp;quot; prefWidth=&amp;quot;200.0&amp;quot; style=&amp;quot;-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5px; -fx-padding: 8px; -fx-font-size: 14px;&amp;quot;&amp;gt;&#10;            &amp;lt;items&amp;gt;&#10;                &amp;lt;FXCollections fx:factory=&amp;quot;observableArrayList&amp;quot;&amp;gt;&#10;                    &amp;lt;String fx:value=&amp;quot;Type 1&amp;quot; /&amp;gt;&#10;                    &amp;lt;String fx:value=&amp;quot;Type 2&amp;quot; /&amp;gt;&#10;                    &amp;lt;String fx:value=&amp;quot;Type 3&amp;quot; /&amp;gt;&#10;                &amp;lt;/FXCollections&amp;gt;&#10;            &amp;lt;/items&amp;gt;&#10;        &amp;lt;/ChoiceBox&amp;gt;&#10;        &amp;lt;Button mnemonicParsing=&amp;quot;false&amp;quot; onAction=&amp;quot;#enregistrer&amp;quot; style=&amp;quot;-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-font-size: 16px;&amp;quot; text=&amp;quot;Enregistrer&amp;quot; /&amp;gt;&#10;        &amp;lt;Button mnemonicParsing=&amp;quot;false&amp;quot; onAction=&amp;quot;#retour&amp;quot; style=&amp;quot;-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-font-size: 16px;&amp;quot; text=&amp;quot;retour&amp;quot; /&amp;gt;&#10;&#10;    &amp;lt;/children&amp;gt;&#10;&amp;lt;/VBox&amp;gt;&#10;" />
+              </message>
+              <message>
+                <speaker value="ASSISTANT" />
+                <text value="&lt;html&gt;&lt;b&gt;You've used up your chat and commands for the month:&lt;/b&gt; You've used all chat messages and commands for the month. Upgrade to Cody Pro for unlimited autocompletes, chats, and commands. &lt;a href=&quot;https://sourcegraph.com/cody/subscription&quot;&gt;Upgrade&lt;/a&gt; or &lt;a href=&quot;https://sourcegraph.com/cody/subscription&quot;&gt;learn more&lt;/a&gt;.&lt;br&gt;&lt;br&gt;(Already upgraded to Pro? Restart your IDE for changes to take effect)&lt;/html&gt;" />
+              </message>
+            </list>
+          </messages>
+          <updatedAt value="2024-04-22T20:34:01.9582064" />
+        </chat>
+      </list>
+    </chats>
+    <defaultLlm>
+      <llm>
+        <model value="anthropic/claude-3-sonnet-20240229" />
+        <provider value="Anthropic" />
+        <title value="Claude 3 Sonnet" />
+      </llm>
+    </defaultLlm>
+  </component>
+</project>

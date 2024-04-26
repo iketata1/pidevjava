@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="386.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.financialhub.controllers.ReponseR">
+   <children>
+      <TableView fx:id="table" layoutX="14.0" layoutY="76.0" onMouseClicked="#getData" prefHeight="330.0" prefWidth="902.0">
+         <columns>
+            <TableColumn fx:id="colid" prefWidth="44.0" text="ID" />
+            <TableColumn fx:id="coldesc" prefWidth="237.0" text="Description" />
+            <TableColumn fx:id="coltype" prefWidth="132.0" text="Type" />
+            <TableColumn fx:id="coletat" minWidth="0.0" prefWidth="82.0" text="Etat" />
+            <TableColumn fx:id="coliduser" minWidth="0.0" prefWidth="94.0" text="IDUser" />
+            <TableColumn fx:id="colemail" prefWidth="139.20001220703125" text="Email" />
+            <TableColumn fx:id="coldate" prefWidth="82.4000244140625" text="Date" />
+            <TableColumn fx:id="colAction" minWidth="0.0" prefWidth="72.7999267578125" text="Actions">
+
+            </TableColumn>         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
