@@ -1,30 +1,25 @@
+
 package tn.esprit.financialhub.controllers;
-
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.css.SimpleStyleableStringProperty;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import tn.esprit.financialhub.models.Reclamation;
-import tn.esprit.financialhub.services.ReclamationService;
 
-import java.net.URL;
+        import javafx.collections.FXCollections;
+        import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
+        import javafx.fxml.FXML;
+        import javafx.scene.control.*;
+        import javafx.scene.control.cell.PropertyValueFactory;
+        import javafx.scene.input.MouseEvent;
+        import javafx.scene.layout.HBox;
+        import tn.esprit.financialhub.models.Reclamation;
+        import tn.esprit.financialhub.services.ReclamationService;
+
+import java.io.IOException;
 import java.sql.SQLException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+
+import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+        import java.util.List;
 
 public class ReclamationController {
 
@@ -53,11 +48,6 @@ public class ReclamationController {
     @FXML
     private TableColumn<Reclamation, String> coletat;
 
-    @FXML
-    private TableColumn<Reclamation, Integer> colid;
-
-    @FXML
-    private TableColumn<Reclamation, String> coliduser;
 
     @FXML
     private TableColumn<Reclamation, String> coltype;
@@ -68,10 +58,10 @@ public class ReclamationController {
     private TextArea desctf;
 
     @FXML
-    private TextField emailtf;
-
+    private TextArea emailtf;
     @FXML
-    private TextField idusertf;
+    private TableColumn<Reclamation, String> colreponse;
+
 
     @FXML
     private HBox root;
@@ -90,20 +80,19 @@ public class ReclamationController {
 
 //search
 
-@FXML
-    public void initialize() {
+    public void refresh() {
         ReclamationService reclamationService = new ReclamationService();
         try {
             List<Reclamation> reclamations = reclamationService.recuperer();
             ObservableList<Reclamation> observableList = FXCollections.observableList(reclamations);
-            table.setItems(observableList);
-            colid.setCellValueFactory(new PropertyValueFactory<>("id"));
-            coliduser.setCellValueFactory(new PropertyValueFactory<>("iduser"));
+            FilteredList<Reclamation> filteredData = new FilteredList<>(observableList, p -> true);
+            table.setItems(filteredData);
             coldesc.setCellValueFactory(new PropertyValueFactory<>("Description"));
             coltype.setCellValueFactory(new PropertyValueFactory<>("Type"));
             coletat.setCellValueFactory(new PropertyValueFactory<>("Etat"));
             colemail.setCellValueFactory(new PropertyValueFactory<>("Email"));
-             coldate.setCellValueFactory(new PropertyValueFactory<>("Date"));
+            coldate.setCellValueFactory(new PropertyValueFactory<>("Date"));
+            colreponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
 
 
 
@@ -113,24 +102,46 @@ public class ReclamationController {
             alert.setContentText("Erreur lors de la récupération des reclamations : " + e.getMessage());
             alert.showAndWait();
         }
-    }
-    @FXML
-    void ajouterRec(ActionEvent event) {
-        if (idusertf.getText().trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setContentText("Veuillez saisir un nom d'utilisateur.");
-            alert.showAndWait();
-            return;
-        }
 
-        if (!idusertf.getText().matches("[a-zA-Z0-9]+")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setContentText("Le nom d'utilisateur ne doit contenir que des caractères alphanumériques.");
-            alert.showAndWait();
-            return;
-        }
+    }
+
+    @FXML
+    public void initialize() {
+        refresh();
+
+        // Créer une FilteredList pour filtrer les données de la table
+        FilteredList<Reclamation> filteredData = new FilteredList<>(table.getItems(), p -> true);
+
+        // Lier la FilteredList à la table
+        table.setItems(filteredData);
+
+        // Ajouter un EventHandler pour le champ de recherche
+        txt_serach.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(reclamation -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (reclamation.getDescription().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (reclamation.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (reclamation.getType().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (reclamation.getDate().toString().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+    }
+
+
+    @FXML
+    void ajouterRec(ActionEvent event) throws SQLException {
+
 
         if (emailtf.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -164,10 +175,11 @@ public class ReclamationController {
 
         ReclamationService reclamationService = new ReclamationService();
         Reclamation reclamation = new Reclamation();
-        reclamation.setIduser((idusertf.getText()));
         reclamation.setEmail(emailtf.getText());
         reclamation.setDescription(desctf.getText());
         reclamation.setType((String) typetf.getValue());
+        reclamation.setEtat("Non traitée");
+
         try {
             reclamationService.ajouter(reclamation);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -175,10 +187,10 @@ public class ReclamationController {
             alert.setContentText("Réclamation ajoutée");
             alert.showAndWait();
 
-            idusertf.clear();
             emailtf.clear();
             desctf.clear();
             typetf.setValue(null);
+
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -186,7 +198,15 @@ public class ReclamationController {
             alert.showAndWait();
         }
 
+
+
+
+        refresh();
+
+
+
     }
+
 
     @FXML
     void annulerRec(ActionEvent event) {
@@ -194,32 +214,42 @@ public class ReclamationController {
         // Réinitialiser les champs de saisie
         desctf.clear();
         emailtf.clear();
-        idusertf.clear();
         typetf.setValue(null);
         btn_mod.setDisable(false);
         table.getSelectionModel().clearSelection(); // Désélectionner toute ligne dans la table
 
     }
-
     @FXML
-    void getData(MouseEvent event) {
-        Reclamation reclamation = table.getSelectionModel().getSelectedItem();
-        if (reclamation != null) {
-            desctf.setText(reclamation.getDescription());
-            idusertf.setText(reclamation.getIduser());
-            emailtf.setText(reclamation.getEmail());
-            btn_mod.setDisable(false); // Activer le bouton modifier
-        }
+    private void getData(MouseEvent event) {
+        Reclamation selectedReclamation = table.getSelectionModel().getSelectedItem();
+        if (selectedReclamation != null) {
+            desctf.setText(selectedReclamation.getDescription());
+            emailtf.setText(selectedReclamation.getEmail());
+            typetf.setValue(selectedReclamation.getType());
+            btn_mod.setDisable(false); // Activer le bouton "Modifier"
 
+            if (selectedReclamation.getReponse() != null) {
+                btn_reprec.setDisable(false); // Activer le bouton "reponse"
+            } else {
+                btn_reprec.setDisable(true); // Désactiver le bouton "reponse"
+            }
+        } else {
+            desctf.clear();
+            emailtf.clear();
+            typetf.setValue(null);
+            btn_reprec.setDisable(true); // Désactiver le bouton "reponse"
+            btn_mod.setDisable(true); // Désactiver le bouton "Modifier"
+        }
     }
+
+
     @FXML
     void modifierRec(ActionEvent event) {
         Reclamation reclamation = table.getSelectionModel().getSelectedItem();
         if (reclamation != null) {
             reclamation.setDescription(desctf.getText());
-            reclamation.setIduser(idusertf.getText());
             reclamation.setEmail(emailtf.getText());
-
+            reclamation.setType(typetf.getValue());
             ReclamationService reclamationService = new ReclamationService();
             try {
                 reclamationService.modifier(reclamation); // Appel à la méthode de service pour modifier la réclamation
@@ -228,22 +258,17 @@ public class ReclamationController {
                 alert.setContentText("La réclamation a été modifiée avec succès.");
                 alert.showAndWait();
 
-
-
-                desctf.clear();
-                idusertf.clear();
-                emailtf.clear();
-                // Désactiver le bouton modifier seulement si aucune réclamation n'est sélectionnée
-                btn_mod.setDisable(true);
+                btn_mod.setDisable(true); // Désactiver le bouton "Modifier" après la modification
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
                 alert.setContentText("Erreur lors de la modification de la réclamation : " + e.getMessage());
-
                 alert.showAndWait();
             }
         }
+        refresh();
     }
+
 
 
     @FXML
@@ -277,5 +302,36 @@ public class ReclamationController {
             alert.showAndWait();
         }
     }
+
+    @FXML
+    private void afficherReponse(ActionEvent event) {
+        Reclamation selectedReclamation = table.getSelectionModel().getSelectedItem();
+        if (selectedReclamation != null) {
+            // Récupérer le contenu de la réponse depuis un champ de texte ou une autre source
+            String contenuReponse = "Contenu de la réponse";
+
+            // Affecter directement le contenu de la réponse à la propriété reponse de la classe Reclamation
+            selectedReclamation.setReponse(contenuReponse);
+
+            // Mettre à jour la réclamation dans la base de données
+            ReclamationService reclamationService = new ReclamationService();
+            try {
+                reclamationService.repondreReclamation(selectedReclamation);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Réponse envoyée");
+                alert.setHeaderText(null);
+                alert.setContentText("Votre réponse a été envoyée avec succès.");
+                alert.showAndWait();
+                refresh(); // Rafraîchir la table après l'envoi de la réponse
+            } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("Une erreur s'est produite lors de l'envoi de la réponse : " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+    }
+
 
 }

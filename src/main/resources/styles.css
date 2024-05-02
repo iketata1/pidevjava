@@ -14,8 +14,8 @@
 }
 
 .form_container Text{
-   -fx-font-size: 1.2em;
-    -fx-fill:  #FFFFFF;
+   -fx-font-size: 2em;
+    -fx-fill:  black;
 }
 
 .form_container VBox{
@@ -208,4 +208,18 @@
     -fx-font-weight: bold; /* Mettre en gras le texte */
     -fx-text-fill: #FFFFFF; /* Couleur du texte en blanc */
     -fx-background-color: #4682B4; /* Couleur de fond bleu pour ces colonnes */
+}
+.reponse-button {
+    -fx-background-color: #4CAF50; /* Couleur de fond verte */
+    -fx-text-fill: white; /* Couleur du texte blanche */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 4px;
+}
+.table-view .table-cell > .button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 4px;
 }

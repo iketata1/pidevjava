@@ -15,6 +15,8 @@ public class HelloApplication extends Application {
         stage.setTitle("Financialhub");
         stage.setScene(scene);
         stage.show();
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
     }
 
     public static void main(String[] args) {

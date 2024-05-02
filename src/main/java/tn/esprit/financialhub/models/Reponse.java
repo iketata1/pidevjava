@@ -2,9 +2,8 @@ package tn.esprit.financialhub.models;
 
 public class Reponse {
     private int id ;
-    private String description ;
-    private String idrec ;
-    private String iduser;
+    private String contenuReponse ;
+
 
     public int getId() {
         return id;
@@ -14,27 +13,16 @@ public class Reponse {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContenuReponse() {
+        return contenuReponse;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+
+    public void setContenuReponse(String contenuReponse) {
+        this.contenuReponse = contenuReponse;
     }
 
-    public String getIdrec() {
-        return idrec;
-    }
 
-    public void setIdrec(String idrec) {
-        this.idrec = idrec;
-    }
 
-    public String getIduser() {
-        return iduser;
-    }
 
-    public void setIduser(String iduser) {
-        this.iduser = iduser;
-    }
 }

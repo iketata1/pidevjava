@@ -1,32 +1,41 @@
 package tn.esprit.financialhub.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
+import javafx.scene.control.Alert;
 import tn.esprit.financialhub.models.Reclamation;
 
-public class ReponseButtonCell extends TableCell {
-    private final Button button;
+public class ReponseButtonCell extends TableCell<Reclamation, Reclamation> {
+
+    private final Button reponseButton = new Button("Voir la réponse");
 
     public ReponseButtonCell() {
-        this.button = new Button("Réponse");
-        this.button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Logique à exécuter lorsque le bouton est cliqué
-                Reclamation reclamation = (Reclamation) getTableRow().getItem();
-                if (reclamation != null) {
-                    // Gérer l'action de réponse à la réclamation ici
-                    System.out.println("Répondre à la réclamation " + reclamation.getId());
+        reponseButton.getStyleClass().add("reponse-button"); // Appliquer le style CSS
+
+        reponseButton.setOnAction(event -> {
+            Reclamation reclamation = getItem();
+            if (reclamation != null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Réponse");
+                alert.setHeaderText(null);
+                if (reclamation.getReponse() != null) {
+                    alert.setContentText(reclamation.getReponse());
+                } else {
+                    alert.setContentText("Aucune réponse pour cette réclamation.");
                 }
+                alert.showAndWait();
             }
         });
     }
 
+    @Override
+    protected void updateItem(Reclamation reclamation, boolean empty) {
+        super.updateItem(reclamation, empty);
+        if (empty || reclamation == null) {
+            setGraphic(null);
+        } else {
+            setGraphic(reponseButton);
+        }
+    }
 
 }

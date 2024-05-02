@@ -2,25 +2,25 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="532.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.financialhub.controllers.ReponseControlller">
+<AnchorPane prefHeight="460.0" prefWidth="650.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.financialhub.controllers.ReponseRRControlller">
    <children>
-      <VBox layoutX="567.0" layoutY="19.0" prefHeight="494.0" prefWidth="402.0" styleClass="form_container" stylesheets="@styles.css">
+      <VBox layoutX="93.0" layoutY="187.0" prefHeight="258.0" prefWidth="402.0" styleClass="form_container" stylesheets="@styles.css">
          <children>
-            <VBox prefHeight="74.0" prefWidth="238.0" styleClass="form_container">
+            <VBox prefHeight="169.0" prefWidth="382.0" styleClass="form_container">
                <children>
-                  <Text fill="#d4c7c7" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="ID User" />
-                  <TextArea fx:id="iduserReponseTF" prefHeight="200.0" prefWidth="200.0" styleClass="form_container" stylesheets="@styles.css" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Description Reponse" />
+                  <TextArea fx:id="descReponseTF" prefHeight="162.0" prefWidth="381.0" styleClass="form_container" stylesheets="@styles.css" />
                </children>
                <padding>
                   <Insets right="10.0" />
@@ -29,61 +29,30 @@
                   <Insets />
                </opaqueInsets>
             </VBox>
-            <VBox prefHeight="50.0" prefWidth="298.0" styleClass="form_container">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="ID Reclamation" />
-                  <TextArea fx:id="idreclamationTF" prefHeight="200.0" prefWidth="200.0" styleClass="form_container" stylesheets="@styles.css" />
-               </children>
-               <padding>
-                  <Insets right="10.0" />
-               </padding>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </VBox>
-            <VBox prefHeight="143.0" prefWidth="339.0" styleClass="form_container">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Descreption Reponse" />
-                  <TextArea fx:id="descReponseTF" prefHeight="200.0" prefWidth="200.0" styleClass="form_container" stylesheets="@styles.css" />
-               </children>
-               <padding>
-                  <Insets right="10.0" />
-               </padding>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </VBox>
+            <Button fx:id="btn_reprec" mnemonicParsing="false" onAction="#ajouterRep" text="Envoyer" />
+
          </children>
       </VBox>
-      <ButtonBar layoutX="86.0" layoutY="84.0" prefHeight="56.0" prefWidth="428.0" styleClass="form_container">
-         <buttons>
-            <Button fx:id="btn_ajoutrep" mnemonicParsing="false" onAction="#ajouterRep" stylesheets="@" text="Ajouter" textFill="#1ccc7a" />
-            <Button fx:id="btn_modrep" layoutX="302.0" layoutY="18.0" mnemonicParsing="false" onAction="#modifierRep" stylesheets="@" text="Modifier" />
-            <Button fx:id="btn_supprep" mnemonicParsing="false" onAction="#supprimerRep" prefHeight="35.0" text="Supprimer" />
-            <Button fx:id="btn_annrep" mnemonicParsing="false" onAction="#annuerRep" prefHeight="35.0" text="Supprimer" />
-         </buttons>
-      </ButtonBar>
-      <TableView fx:id="table_reponse" layoutX="23.0" layoutY="193.0" onMouseClicked="#getData" prefHeight="286.0" prefWidth="544.0">
+
+      <TableView fx:id="table_reponse" layoutX="23.0" layoutY="68.0" prefHeight="82.0" prefWidth="544.0" styleClass="form_container" stylesheets="@styles.css">
          <columns>
-            <TableColumn fx:id="col_idrep" prefWidth="44.0" text="ID" />
-            <TableColumn fx:id="coldesc_rep" prefWidth="237.0" text="Description_rec" />
-            <TableColumn fx:id="colid_rec" prefWidth="132.0" text="ID Reclamation" />
-            <TableColumn fx:id="coliduser_rep" minWidth="0.0" prefWidth="102.39996337890625" text="ID User" />
+            <TableColumn fx:id="coldesc_selected" prefWidth="257.6000175476074" text="Description" />
+            <TableColumn fx:id="colemailselected" minWidth="0.0" prefWidth="285.5999755859375" text="Email" />
          </columns>
       </TableView>
       <Pane layoutX="10.0" layoutY="10.0" prefHeight="82.0" prefWidth="523.0">
          <children>
-            <TextField fx:id="txt_serach" layoutX="171.0" layoutY="34.0" prefHeight="28.0" prefWidth="197.0" promptText="Search ...">
-               <font>
-                  <Font name="Century Gothic Bold Italic" size="14.0" />
-               </font>
-            </TextField>
-            <Text layoutX="52.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="FinancialHub Management" wrappingWidth="339.13671875">
+            <Text layoutX="100.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="FinancialHub Management" wrappingWidth="339.13671875">
                <font>
                   <Font name="Century Gothic Bold" size="22.0" />
                </font>
             </Text>
          </children>
       </Pane>
+      <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="46.0" layoutY="8.0">
+         <image>
+            <Image url="@images/FH.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
