@@ -29,6 +29,7 @@ import java.util.EventObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class ReponseR {
 
@@ -101,7 +102,6 @@ public class ReponseR {
         }
 
     }
-
     @FXML
     public void initialize() {
         refresh();
@@ -121,19 +121,17 @@ public class ReponseR {
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (reclamation.getDescription().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (reclamation.getEmail().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (reclamation.getType().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (reclamation.getDate().toString().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
+                return Stream.of(
+                                reclamation.getDescription(),
+                                reclamation.getEmail(),
+                                reclamation.getType(),
+                                reclamation.getDate().toString())
+                        .anyMatch(field -> field.toLowerCase().contains(lowerCaseFilter));
             });
         });
     }
+
+
 
 
     public void ouvrirInterfaceReponse(ActionEvent event) {

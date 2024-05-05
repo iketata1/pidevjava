@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Date;
         import java.util.List;
 
+
 public class ReclamationController {
 
 
@@ -76,6 +77,8 @@ public class ReclamationController {
     private ChoiceBox<String> typetf;
 
 
+    private RealBadWordApiClient badWordApiClient;
+    private String[] forbiddenWords;
 
 
 //search
@@ -138,7 +141,13 @@ public class ReclamationController {
         });
     }
 
-
+    public ReclamationController() {
+        // Initialise le client API de vérification des mots inappropriés
+        String baseURL = "https://api.badwordservice.com/";
+        String endpoint = "check";
+        String apiKey = "VOTRE_CLE_API";
+        badWordApiClient = new RealBadWordApiClient(baseURL, endpoint, apiKey);
+    }
     @FXML
     void ajouterRec(ActionEvent event) throws SQLException {
 
@@ -165,12 +174,29 @@ public class ReclamationController {
             alert.showAndWait();
             return;
         }
+
+
         if (typetf.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setContentText("Veuillez sélectionner un type.");
             alert.showAndWait();
             return;
+        }
+        // List of forbidden words
+        List<String> forbiddenWords = Arrays.asList("raciste", "fuck", "pute");
+
+        // Check for bad words in the description
+        for (String word : forbiddenWords) {
+            if (desctf.getText().toLowerCase().contains(word.toLowerCase())) {
+                // Show an alert if a forbidden word is found
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Description non valide");
+                alert.setContentText("La description contient des mots inappropriés.");
+                alert.showAndWait();
+                return;
+            }
         }
 
         ReclamationService reclamationService = new ReclamationService();
@@ -228,11 +254,6 @@ public class ReclamationController {
             typetf.setValue(selectedReclamation.getType());
             btn_mod.setDisable(false); // Activer le bouton "Modifier"
 
-            if (selectedReclamation.getReponse() != null) {
-                btn_reprec.setDisable(false); // Activer le bouton "reponse"
-            } else {
-                btn_reprec.setDisable(true); // Désactiver le bouton "reponse"
-            }
         } else {
             desctf.clear();
             emailtf.clear();
@@ -267,13 +288,6 @@ public class ReclamationController {
             }
         }
         refresh();
-    }
-
-
-
-    @FXML
-    void reponseRec(ActionEvent event) {
-
     }
 
     @FXML

@@ -9,7 +9,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tn.esprit.financialhub.models.Reclamation;
 import tn.esprit.financialhub.services.ReclamationService;
+import java.util.Properties;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -75,12 +79,16 @@ public class ReponseRRControlller {
             reclamationSelectionnee.setReponse(reponse);
 
             try {
+                // Mettre à jour la réclamation avec la réponse
                 reclamationService.modifier(reclamationSelectionnee);
-                reclamationService.repondreReclamation(reclamationSelectionnee); // Mettre à jour l'état de la réclamation
+                // Envoyer la réponse par email
+                envoyerReponseParEmail(reclamationSelectionnee); // Utilisation de l'adresse email de la réclamation sélectionnée
+                // Afficher une confirmation à l'utilisateur
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Réponse envoyée");
                 alert.setContentText("La réponse a été envoyée avec succès.");
                 alert.showAndWait();
+                // Rafraîchir la table des réclamations
                 refreshTableView();
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -93,6 +101,42 @@ public class ReponseRRControlller {
             alert.setTitle("Aucune sélection");
             alert.setContentText("Veuillez sélectionner une réclamation pour envoyer une réponse.");
             alert.showAndWait();
+        }
+    }
+
+    // Méthode pour envoyer la réponse par email en utilisant l'adresse email de la réclamation sélectionnée
+    private void envoyerReponseParEmail(Reclamation reclamation) {
+        String destinataire = reclamation.getEmail(); // Récupération de l'adresse email de la réclamation sélectionnée
+        String objet = "Réponse à votre réclamation";
+        String contenu = "Bonjour,\n\nVoici la réponse à votre réclamation :\n\n" + reclamation.getReponse();
+
+        // Configuration des propriétés pour la session d'envoi d'email
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true"); // Activation de l'authentification
+        props.put("mail.smtp.starttls.enable", "true"); // Activation du protocole TLS
+        props.put("mail.smtp.host", "smtp.gmail.com"); // Hôte SMTP de Gmail
+        props.put("mail.smtp.port", "587"); // Port SMTP de Gmail
+
+        // Création de la session d'envoi d'email
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("ines.ketata@esprit.tn", "222JFT3747"); // Remplacer par vos identifiants
+            }
+        });
+
+        try {
+            // Création du message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("ines.ketata@esprit.tn")); // Remplacer par votre adresse email
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinataire));
+            message.setSubject(objet);
+            message.setText(contenu);
+
+            // Envoi du message
+            Transport.send(message);
+            System.out.println("Email envoyé avec succès à " + destinataire);
+        } catch (MessagingException e) {
+            System.out.println("Erreur lors de l'envoi de l'email : " + e.getMessage());
         }
     }
 

@@ -27,7 +27,6 @@ public class StatistiqueController {
             statistiques.put(type, statistiques.getOrDefault(type, 0) + 1);
         }
 
-        // Effacer les données précédentes du PieChart
         pieChartStatistiques.getData().clear();
 
         // Ajouter les données au PieChart
@@ -40,7 +39,6 @@ public class StatistiqueController {
             pieChartStatistiques.getData().add(data);
         }
 
-        // Appeler la méthode d'animation après l'initialisation des données
         animerPieChart();
     }
 

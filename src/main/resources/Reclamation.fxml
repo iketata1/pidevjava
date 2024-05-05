@@ -59,20 +59,19 @@
                                     <Button fx:id="btn_mod" layoutX="302.0" layoutY="18.0" mnemonicParsing="false" onAction="#modifierRec" stylesheets="@styles.css" text="Modifier" />
                                     <Button fx:id="btn_supp" layoutX="217.0" layoutY="18.0" mnemonicParsing="false" onAction="#supprimerRec" prefHeight="36.0" text="Supprimer" />
                                     <Button fx:id="btn_ann" layoutX="132.0" layoutY="18.0" mnemonicParsing="false" onAction="#annulerRec" text="Annuler" />
-                                    <Button fx:id="btn_reprec" mnemonicParsing="false" onAction="#reponseRec" text="reponse" />
                                  </buttons>
                               </ButtonBar>
-                              <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="115.0" layoutY="33.0">
+                              <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="143.0" layoutY="33.0">
                                  <image>
                                     <Image url="@images/addd.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="382.0" layoutY="35.0">
+                              <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="476.0" layoutY="35.0">
                                  <image>
                                     <Image url="@images/delete.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="509.0" layoutY="35.0">
+                              <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="629.0" layoutY="35.0">
                                  <image>
                                     <Image url="@images/annuler.png" />
                                  </image>
@@ -81,7 +80,7 @@
                         </Pane>
                         <Pane layoutX="3.0" layoutY="173.0" prefHeight="266.0" prefWidth="690.0">
                            <children>
-                              <TableView fx:id="table" layoutX="-8.0" layoutY="-56.0" onMouseClicked="#getData" prefHeight="307.0" prefWidth="916.0">
+                              <TableView fx:id="table" layoutX="-8.0" layoutY="-56.0" onMouseClicked="#getData" prefHeight="307.0" prefWidth="916.0" stylesheets="@styles.css">
                                  <columns>
                                     <TableColumn fx:id="coldesc" prefWidth="237.0" text="Description" />
                                     <TableColumn fx:id="coltype" prefWidth="132.0" text="Type" />
@@ -93,12 +92,7 @@
                               </TableView>
                            </children>
                         </Pane>
-                        <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="650.0" layoutY="67.0">
-                           <image>
-                              <Image url="@images/rep.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="263.0" layoutY="67.0">
+                        <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="317.0" layoutY="67.0">
                            <image>
                               <Image url="@images/update.png" />
                            </image>
