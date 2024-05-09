@@ -205,6 +205,7 @@ public class ReclamationController {
         reclamation.setDescription(desctf.getText());
         reclamation.setType((String) typetf.getValue());
         reclamation.setEtat("Non traitée");
+        reclamation.setReponse(" ");
 
         try {
             reclamationService.ajouter(reclamation);

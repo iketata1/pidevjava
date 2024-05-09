@@ -176,7 +176,6 @@ public class ReponseR {
 
 
 
-
     public void Statistique(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Statistique.fxml"));

@@ -120,7 +120,7 @@ public class ReponseRRControlller {
         // Création de la session d'envoi d'email
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("financialhub.contactstaff@gmail.com", "azerty1?"); // Remplacer par vos identifiants
+                return new PasswordAuthentication("ines.ketata@esprit.tn", "222JFT3747"); // Remplacer par vos identifiants
             }
         });
 

@@ -86,7 +86,7 @@ public class ReclamationService implements IService<Reclamation> {
             reclamation.setEtat(rs.getString("Etat"));
             reclamation.setEmail(rs.getString("Email"));
             reclamation.setDate(rs.getDate("Date").toLocalDate());
-            reclamation.setReponse(rs.getString("reponse")); // Récupérer la valeur de la colonne "reponse"
+            reclamation.setReponse(rs.getString("reponse"));
             reclamations.add(reclamation);
         }
 
