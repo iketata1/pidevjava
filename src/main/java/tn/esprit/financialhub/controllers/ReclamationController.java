@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Date;
         import java.util.List;
+import java.util.stream.Stream;
 
 
 public class ReclamationController {
@@ -111,7 +112,6 @@ public class ReclamationController {
     @FXML
     public void initialize() {
         refresh();
-
         // Créer une FilteredList pour filtrer les données de la table
         FilteredList<Reclamation> filteredData = new FilteredList<>(table.getItems(), p -> true);
 
@@ -127,16 +127,12 @@ public class ReclamationController {
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (reclamation.getDescription().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (reclamation.getEmail().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (reclamation.getType().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (reclamation.getDate().toString().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
+                return Stream.of(
+                                reclamation.getDescription(),
+                                reclamation.getEmail(),
+                                reclamation.getType(),
+                                reclamation.getDate().toString())
+                        .anyMatch(field -> field.toLowerCase().contains(lowerCaseFilter));
             });
         });
     }
