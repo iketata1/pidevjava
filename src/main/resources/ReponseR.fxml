@@ -24,30 +24,42 @@
 
             </TableColumn>         </columns>
       </TableView>
-      <Text layoutX="54.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="FinancialHub Management" wrappingWidth="306.33673095703125">
+      <Text layoutX="54.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="FinancialHub Management" wrappingWidth="306.33673095703125">
          <font>
             <Font name="Century Gothic Bold" size="22.0" />
          </font>
       </Text>
-      <Button fx:id="btn_statistique" layoutX="786.0" layoutY="43.0" onAction="#Statistique" prefHeight="46.0" prefWidth="100.0" styleClass="reponse-button" stylesheets="@styles.css" text="Statistique" textAlignment="CENTER" />
-      <ImageView fitHeight="46.0" fitWidth="60.0" layoutX="725.0" layoutY="42.0">
+      <Button fx:id="btn_statistique" layoutX="786.0" layoutY="38.0" onAction="#Statistique" prefHeight="46.0" prefWidth="100.0" styleClass="reponse-button" stylesheets="@styles.css" text="Statistique" textAlignment="CENTER" />
+      <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="733.0" layoutY="37.0">
          <image>
             <Image url="@images/statistique.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txt_serach" layoutX="392.0" layoutY="35.0" prefHeight="32.0" prefWidth="203.0" promptText="Search ...">
+      <TextField fx:id="txt_serach" layoutX="80.0" layoutY="75.0" prefHeight="32.0" prefWidth="254.0" promptText="Search ...">
          <font>
             <Font name="Century Gothic Bold Italic" size="14.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="559.0" layoutY="38.0">
+      <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="295.0" layoutY="78.0">
          <image>
             <Image url="@images/search.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="13.0" layoutY="31.0">
+      <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="13.0" layoutY="12.0">
          <image>
             <Image url="@images/FH.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnFiltrerType" layoutX="555.0" layoutY="41.0" onAction="#filtrerParType" prefHeight="27.0" prefWidth="90.0" styleClass="reponse-button" stylesheets="@styles.css" text="Filtrer" textAlignment="CENTER" />
+      <Button fx:id="btnTrier" layoutX="380.0" layoutY="41.0" onAction="#trierReclamations" prefHeight="28.0" prefWidth="131.0" styleClass="reponse-button" stylesheets="@styles.css" text="Trier" textAlignment="CENTER" />
+      <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="392.0" layoutY="46.0">
+         <image>
+            <Image url="@images/tri.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="565.0" layoutY="42.0">
+         <image>
+            <Image url="@images/filtrer.png" />
          </image>
       </ImageView>
 

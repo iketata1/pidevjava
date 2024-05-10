@@ -1,38 +1,28 @@
 package tn.esprit.financialhub.controllers;
 
-import javafx.animation.RotateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import javafx.util.Duration;
 import tn.esprit.financialhub.models.Reclamation;
 import tn.esprit.financialhub.services.ReclamationService;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.EventObject;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class ReponseR {
-
 
     public Button btn_statistique;
     @FXML
@@ -54,12 +44,18 @@ public class ReponseR {
     private TableColumn<Reclamation, Integer> colid;
 
     @FXML
-    private TableColumn<Reclamation, String>coltype;
+    private TableColumn<Reclamation, String> coltype;
 
     @FXML
     private TableView<Reclamation> table;
     @FXML
     private TextField txt_serach;
+
+    @FXML
+    private Button btnFiltrerType;
+
+    @FXML
+    private Button btnTrier;
 
     public void refresh() {
         ReclamationService reclamationService = new ReclamationService();
@@ -102,6 +98,7 @@ public class ReponseR {
         }
 
     }
+
     @FXML
     public void initialize() {
         refresh();
@@ -130,9 +127,6 @@ public class ReponseR {
             });
         });
     }
-
-
-
 
     public void ouvrirInterfaceReponse(ActionEvent event) {
         Reclamation reclamationSelectionnee = table.getSelectionModel().getSelectedItem();
@@ -168,13 +162,8 @@ public class ReponseR {
         }
     }
 
-
-
     @FXML
     private VBox vboxStatistiques;
-
-
-
 
     public void Statistique(ActionEvent event) {
         try {
@@ -194,11 +183,78 @@ public class ReponseR {
         }
     }
 
-
-
-
-
     public void getData(MouseEvent mouseEvent) {
+        // Méthode vide
+    }
 
+    @FXML
+    private void filtrerParType(ActionEvent event) {
+        List<String> types = getTypesReclamation();
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(null, types);
+        dialog.setTitle("Filtrer par type");
+        dialog.setHeaderText("Sélectionnez un type de réclamation");
+        dialog.setContentText("Type :");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(type -> filtrerTableParType(type));
+    }
+
+    private List<String> getTypesReclamation() {
+        List<String> types = new ArrayList<>();
+        for (Reclamation reclamation : table.getItems()) {
+            String type = reclamation.getType();
+            if (!types.contains(type)) {
+                types.add(type);
+            }
+        }
+        return types;
+    }
+
+    private void filtrerTableParType(String type) {
+        FilteredList<Reclamation> filteredData = new FilteredList<>(table.getItems(), p -> true);
+
+        filteredData.setPredicate(reclamation -> {
+            if (type == null || type.isEmpty()) {
+                return true;
+            }
+
+            return reclamation.getType().equals(type);
+        });
+
+        table.setItems(filteredData);
+    }
+
+    @FXML
+    private void trierReclamations(ActionEvent event) {
+        List<String> criteresTri = Arrays.asList("Traitée", "Non traitée");
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(null, criteresTri);
+        dialog.setTitle("Trier les réclamations");
+        dialog.setHeaderText("Sélectionnez l'état");
+        dialog.setContentText("État :");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(this::trierTableParEtat);
+    }
+
+    private void trierTableParEtat(String etat) {
+        Comparator<Reclamation> comparateur = Comparator.comparing(Reclamation::getEtat, (etat1, etat2) -> {
+            if (etat1.equals("Non traitée") && etat2.equals("Traitée")) {
+                return -1;
+            } else if (etat1.equals("Traitée") && etat2.equals("Non traitée")) {
+                return 1;
+            } else {
+                return etat1.compareTo(etat2);
+            }
+        });
+
+        ObservableList<Reclamation> reclamationsFiltrees = FXCollections.observableArrayList();
+        for (Reclamation reclamation : table.getItems()) {
+            if (reclamation.getEtat().equals(etat)) {
+                reclamationsFiltrees.add(reclamation);
+            }
+        }
+
+        FXCollections.sort(reclamationsFiltrees, comparateur);
+        table.setItems(reclamationsFiltrees);
     }
 }
