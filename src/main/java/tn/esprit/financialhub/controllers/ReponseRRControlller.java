@@ -7,8 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import tn.esprit.financialhub.models.Mailing;
 import tn.esprit.financialhub.models.Reclamation;
 import tn.esprit.financialhub.services.ReclamationService;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 import javax.mail.*;
@@ -40,6 +44,10 @@ public class ReponseRRControlller {
     private ReclamationService reclamationService;
     private ObservableList<Reclamation> observableList;
     private Stage currentStage;
+    Mailing mailing = new Mailing();
+
+    public ReponseRRControlller() throws MessagingException, GeneralSecurityException, IOException {
+    }
 
     @FXML
     public void initialize() {
@@ -81,8 +89,11 @@ public class ReponseRRControlller {
             try {
                 // Mettre à jour la réclamation avec la réponse
                 reclamationService.modifier(reclamationSelectionnee);
-                // Envoyer la réponse par email
-                envoyerReponseParEmail(reclamationSelectionnee); // Utilisation de l'adresse email de la réclamation sélectionnée
+                Mailing mailing = new Mailing();
+
+                // Utiliser les valeurs de la réclamation sélectionnée
+                mailing.sendMail("Bienvenue dans Financialhub", "Votre Réponse à la réclamation est:  " + reponse, reclamationSelectionnee.getEmail());
+
                 // Afficher une confirmation à l'utilisateur
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Réponse envoyée");
@@ -95,6 +106,12 @@ public class ReponseRRControlller {
                 alert.setTitle("Erreur");
                 alert.setContentText("Erreur lors de l'envoi de la réponse : " + e.getMessage());
                 alert.showAndWait();
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            } catch (GeneralSecurityException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -104,41 +121,8 @@ public class ReponseRRControlller {
         }
     }
 
-    // Méthode pour envoyer la réponse par email en utilisant l'adresse email de la réclamation sélectionnée
-    private void envoyerReponseParEmail(Reclamation reclamation) {
-        String destinataire = reclamation.getEmail(); // Récupération de l'adresse email de la réclamation sélectionnée
-        String objet = "Réponse à votre réclamation";
-        String contenu = "Bonjour,\n\nVoici la réponse à votre réclamation :\n\n" + reclamation.getReponse();
 
-        // Configuration des propriétés pour la session d'envoi d'email
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true"); // Activation de l'authentification
-        props.put("mail.smtp.starttls.enable", "true"); // Activation du protocole TLS
-        props.put("mail.smtp.host", "smtp.gmail.com"); // Hôte SMTP de Gmail
-        props.put("mail.smtp.port", "587"); // Port SMTP de Gmail
 
-        // Création de la session d'envoi d'email
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("ines.ketata@esprit.tn", "222JFT3747"); // Remplacer par vos identifiants
-            }
-        });
-
-        try {
-            // Création du message
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("ines.ketata@esprit.tn")); // Remplacer par votre adresse email
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinataire));
-            message.setSubject(objet);
-            message.setText(contenu);
-
-            // Envoi du message
-            Transport.send(message);
-            System.out.println("Email envoyé avec succès à " + destinataire);
-        } catch (MessagingException e) {
-            System.out.println("Erreur lors de l'envoi de l'email : " + e.getMessage());
-        }
-    }
 
 
 }
